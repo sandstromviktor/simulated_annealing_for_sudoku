@@ -68,11 +68,12 @@ class Sudoku():
 
     def swap_two_elements_in_column(self, col):
         idx = np.where(~self.clues[:,col])[0]
-        idx = np.random.permutation(idx)[:2] if len(idx) > 1 else []
-        value_1 = self.board[idx[0],col]
-        value_2 = self.board[idx[1],col]
-        self.board[idx[0],col] = value_2
-        self.board[idx[1],col] = value_1
+        if len(idx) > 1:
+            idx = np.random.permutation(idx)[:2]
+            value_1 = self.board[idx[0],col]
+            value_2 = self.board[idx[1],col]
+            self.board[idx[0],col] = value_2
+            self.board[idx[1],col] = value_1
 
 
     @staticmethod
